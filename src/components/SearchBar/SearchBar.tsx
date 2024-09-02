@@ -18,7 +18,7 @@ export const SearchBar = () => {
           value={query}
           onChange={handelChangeQuery}
           placeholder="Search by ISBN or Title"
-          maxLength={30}
+          maxLength={25}
         />
         <IoSearchSharp className="absolute right-3 top-1/2 size-6 -translate-y-1/2 fill-slate-400" />
       </div>

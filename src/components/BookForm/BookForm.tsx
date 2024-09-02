@@ -19,11 +19,10 @@ export const BookForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handelSubmitForm}
-      className="bg-tableRowEvenColor flex w-[320px] flex-col gap-7 p-4"
-    >
-      <h1 className="font-montserrat-semibold flex justify-center text-2xl">Add Book</h1>
+    <form onSubmit={handelSubmitForm} className="flex flex-col gap-7">
+      <h1 className="font-montserrat-semibold text-greyColor flex justify-center text-2xl">
+        Add Book
+      </h1>
       <div className="flex flex-col gap-2.5">
         <Input label="ISBN" value={isbn} changeValue={setIsbn} placeholder="Book ISBN" required />
         <Input

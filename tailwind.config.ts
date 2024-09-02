@@ -22,6 +22,7 @@ export default {
         tableRowEvenColor: "var(--table-row-even-color)",
         statusBorrowedColor: "var(--status-borrowed-color)",
         statusAvailableColor: "var(--status-available-color)",
+        greyColor: "var(--grey-color)",
       },
     },
   },

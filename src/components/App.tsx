@@ -1,29 +1,51 @@
+import { useEffect, useState } from "react";
+
 import { Table } from "./Table/Table";
 import { ToolBar } from "./ToolBar/ToolBar";
 
-const books = [
-  {
-    _id: "66d5dff7d34c04be08750c19",
-    isbn: "978-0-14-028329-7",
-    title: "The Hobbit",
-    author: "J.R.R. Tolkien",
-    isBorrowed: false,
-  },
-  {
-    _id: "66d5dff7d34c04be08750c19",
-    isbn: "978-0-14-028329-7",
-    title: "The Hobbit",
-    author: "J.R.R. Tolkien",
-    isBorrowed: false,
-  },
-];
+import { getAllBooks } from "../services/api";
+import type { Book } from "../types";
+
 export const App = () => {
+  const [fetching, setFetching] = useState(false);
+  const [books, setBooks] = useState<Book[]>([]);
+  const [search, setSearch] = useState<string>("");
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const searchQuery = searchParams.get("query") || "";
+      setSearch(searchQuery);
+    };
+
+    handlePopState();
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+
+  useEffect(() => {
+    setFetching(true);
+    getAllBooks(search ? search : "")
+      .then(setBooks)
+      .catch(() => {
+        console.error("Something went wrong. Reload page or try again later!");
+      })
+      .finally(() => setFetching(false));
+  }, [search]);
+
   return (
-    <main>
-      <section className="container flex flex-col gap-12 py-[60px]">
-        <ToolBar />
-        <Table books={books} />
-      </section>
-    </main>
+    <>
+      {fetching && <div>Loader...</div>}
+      <main>
+        <section className="container flex flex-col gap-12 py-[60px]">
+          <ToolBar />
+          <Table books={books} />
+        </section>
+      </main>
+    </>
   );
 };

@@ -19,7 +19,7 @@ export default {
         buttonHoverColor: "var(--button-hover-color)",
         tableHeaderColor: "var(--table-header-color)",
         tableRowOddColor: "var(--table-row-odd-color)",
-        tableRowEvenColor: "var(--table-row-even-color)",
+        tableRowEvenColor: "var(--table-row--even-color)",
         statusBorrowedColor: "var(--status-borrowed-color)",
         statusAvailableColor: "var(--status-available-color)",
         greyColor: "var(--grey-color)",

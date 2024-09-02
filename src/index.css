@@ -24,9 +24,9 @@
   --secondary-text-color: #ffffff;
   --button-color: #007bff;
   --button-hover-color: #0056b3;
-  --table-header-color: #343a40;
-  --table-row-odd-color: #f5f5f5;
-  --table-row-even-color: #e9f7fe;
+  --table-header-color: #52595f;
+  --table-row-odd-color: #8cd3f7;
+  --table-row--even-color: #66c8f9;
   --status-borrowed-color: #dc3545;
   --status-available-color: #28a745;
   --grey-color: #6c757d;
@@ -46,4 +46,24 @@ body {
 
 .label {
   @apply flex flex-col gap-1;
+}
+
+th {
+  @apply w-1/5 border border-white;
+}
+
+.number-column {
+  @apply w-auto px-4;
+}
+
+tbody tr {
+  @apply bg-tableRowOddColor;
+
+  &:nth-child(even) {
+    @apply bg-tableRowEvenColor;
+  }
+}
+
+td {
+  @apply border border-white;
 }

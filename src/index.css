@@ -34,3 +34,7 @@
 body {
   @apply font-montserrat-regular bg-primaryBgColor text-primaryTextColor min-h-screen;
 }
+
+.primary-btn {
+  @apply bg-buttonColor text-secondaryTextColor hover:bg-buttonHoverColor font-montserrat-semibold rounded-md px-4 py-2;
+}

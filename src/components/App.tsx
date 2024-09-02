@@ -1,9 +1,11 @@
-import { BookForm } from "./BookForm/BookForm";
+import { ToolBar } from "./ToolBar/ToolBar";
 
 export const App = () => {
   return (
-    <div className="flex h-screen items-center justify-center">
-      <BookForm />
-    </div>
+    <main>
+      <section className="container py-[60px]">
+        <ToolBar />
+      </section>
+    </main>
   );
 };

@@ -32,9 +32,17 @@
 }
 
 body {
-  @apply font-montserrat-regular bg-primaryBgColor text-primaryTextColor min-h-screen;
+  @apply font-montserrat-regular bg-primaryBgColor text-primaryTextColor min-h-screen text-lg;
 }
 
 .primary-btn {
   @apply bg-buttonColor text-secondaryTextColor hover:bg-buttonHoverColor font-montserrat-semibold rounded-md px-4 py-2;
+}
+
+.input-field {
+  @apply focus:border-buttonColor rounded-md border border-solid border-gray-500 px-3 py-1.5 text-sm focus:outline-none;
+}
+
+.label {
+  @apply flex flex-col gap-0.5;
 }

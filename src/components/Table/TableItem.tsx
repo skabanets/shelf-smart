@@ -48,7 +48,7 @@ export const TableItem = ({ book, number, handleDeleteBook, handleEditBook }: Ta
         <td>
           <Button
             onClick={() => handleChangeStatus(book.isbn)}
-            className={`w-2/3 rounded p-2 ${book.isBorrowed ? "bg-statusBorrowedColor" : "bg-statusAvailableColor"}`}
+            className={`w-2/3 rounded p-2 ${book.isBorrowed ? "bg-statusBorrowedColor hover:bg-red-600" : "bg-statusAvailableColor hover:bg-green-600"}`}
             type="button"
           >
             {book.isBorrowed ? "Borrowed" : "Available"}

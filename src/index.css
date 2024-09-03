@@ -36,6 +36,10 @@ body {
   @apply min-h-screen bg-primaryBgColor font-montserrat-regular text-lg text-primaryTextColor;
 }
 
+button {
+  @apply transition-all duration-300 ease-in-out;
+}
+
 .primary-btn {
   @apply rounded-md bg-buttonColor px-4 py-2 font-montserrat-semibold text-secondaryTextColor hover:bg-buttonHoverColor;
 }

@@ -2,22 +2,35 @@ import { useState } from "react";
 
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
+import { addBook } from "../../services/api";
+import { toast } from "react-toastify";
 
-export const BookForm = () => {
+interface BookFormProps {
+  toggleModal: () => void;
+}
+
+export const BookForm = ({ toggleModal }: BookFormProps) => {
   const [isbn, setIsbn] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
 
-  const handelSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
+  const handelSubmitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const bookData = {
       isbn,
       title,
       author,
+      isBorrowed: false,
     };
 
-    console.log("Book Data:", bookData);
+    try {
+      await addBook(bookData);
+      toast.success("Book added successfully");
+      toggleModal();
+    } catch (error) {
+      toast.error(error instanceof Error && error.message);
+    }
   };
 
   return (
@@ -26,19 +39,25 @@ export const BookForm = () => {
         Add Book
       </h1>
       <div className="flex flex-col gap-2.5">
-        <Input label="ISBN" value={isbn} changeValue={setIsbn} placeholder="Book ISBN" required />
+        <Input
+          label="ISBN"
+          value={isbn}
+          changeValue={setIsbn}
+          placeholder="Example 978-3-16-148410-0"
+          required
+        />
         <Input
           label="Title"
           value={title}
           changeValue={setTitle}
-          placeholder="Book title"
+          placeholder="Enter title"
           required
         />
         <Input
           label="Author"
           value={author}
           changeValue={setAuthor}
-          placeholder="Book author"
+          placeholder="Enter author"
           required
         />
       </div>

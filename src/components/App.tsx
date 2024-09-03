@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Table } from "./Table/Table";
 import { ToolBar } from "./ToolBar/ToolBar";
+import { Loader } from "./Loader/Loader";
 
 import { getAllBooks } from "../services/api";
 import type { Book } from "../types/book";
@@ -24,6 +25,8 @@ export const App = () => {
   const handleDeleteBook = (isbn: string) => {
     setBooks(books.filter(book => book.isbn !== isbn));
   };
+
+  if (fetching) return <Loader />;
 
   return (
     <>

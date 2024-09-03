@@ -20,7 +20,7 @@ export const ToolBar = ({ search, setSearch }: ToolBarProps & {}) => {
       </Button>
       {isOpenModal && (
         <Modal toggleModal={toggleModal}>
-          <BookForm />
+          <BookForm toggleModal={toggleModal} />
         </Modal>
       )}
     </div>

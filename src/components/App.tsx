@@ -32,6 +32,14 @@ export const App = () => {
     return () => clearTimeout(timeoutId);
   }, [search]);
 
+  const handleAddBook = (book: Book) => {
+    setBooks([...books, book]);
+  };
+  const handleEditBook = (book: Book) => {
+    console.log(book);
+    setBooks(books.map(b => (b.isbn === book.isbn ? book : b)));
+  };
+
   const handleDeleteBook = (isbn: string) => {
     setBooks(books.filter(book => book.isbn !== isbn));
   };
@@ -42,8 +50,12 @@ export const App = () => {
     <>
       <main>
         <section className="container flex flex-col gap-12 py-[60px]">
-          <ToolBar search={search} setSearch={setSearch} />
-          <Table books={books} handleDeleteBook={handleDeleteBook} />
+          <ToolBar search={search} setSearch={setSearch} handleAddBook={handleAddBook} />
+          <Table
+            books={books}
+            handleDeleteBook={handleDeleteBook}
+            handleEditBook={handleEditBook}
+          />
         </section>
       </main>
     </>

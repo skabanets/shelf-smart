@@ -6,9 +6,10 @@ import type { Book } from "../../types/book";
 interface TableItemProps {
   books: Book[];
   handleDeleteBook: (isbn: string) => void;
+  handleEditBook: (book: Book) => void;
 }
 
-export const Table = ({ books, handleDeleteBook }: TableItemProps) => {
+export const Table = ({ books, handleDeleteBook, handleEditBook }: TableItemProps) => {
   return (
     <table className="w-full text-center shadow-sm">
       <TableHeader />
@@ -19,6 +20,7 @@ export const Table = ({ books, handleDeleteBook }: TableItemProps) => {
             book={book}
             number={index + 1}
             handleDeleteBook={handleDeleteBook}
+            handleEditBook={handleEditBook}
           />
         ))}
       </tbody>

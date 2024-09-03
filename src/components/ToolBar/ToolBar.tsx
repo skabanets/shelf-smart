@@ -4,12 +4,14 @@ import { Modal } from "../Modal/Modal";
 import { SearchBar } from "../SearchBar/SearchBar";
 
 import { useModal } from "../../hooks";
+import type { Book } from "../../types/book";
 
 interface ToolBarProps {
   search: string;
   setSearch: (search: string) => void;
+  handleAddBook: (book: Book) => void;
 }
-export const ToolBar = ({ search, setSearch }: ToolBarProps & {}) => {
+export const ToolBar = ({ search, setSearch, handleAddBook }: ToolBarProps & {}) => {
   const [isOpenModal, toggleModal] = useModal();
 
   return (
@@ -20,7 +22,7 @@ export const ToolBar = ({ search, setSearch }: ToolBarProps & {}) => {
       </Button>
       {isOpenModal && (
         <Modal toggleModal={toggleModal}>
-          <BookForm toggleModal={toggleModal} />
+          <BookForm toggleModal={toggleModal} handleAddBook={handleAddBook} />
         </Modal>
       )}
     </div>

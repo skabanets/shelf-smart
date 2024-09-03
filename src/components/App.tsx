@@ -36,8 +36,9 @@ export const App = () => {
   const handleAddBook = (book: Book) => {
     setBooks([...books, book]);
   };
-  const handleEditBook = (book: Book) => {
-    setBooks(books.map(b => (b.isbn === book.isbn ? book : b)));
+
+  const handleEditBook = (book: Book, oldIsbn: string) => {
+    setBooks(books.map(b => (b.isbn === oldIsbn ? book : b)));
   };
 
   const handleDeleteBook = (isbn: string) => {

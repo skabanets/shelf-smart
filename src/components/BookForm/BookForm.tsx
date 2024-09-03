@@ -10,7 +10,7 @@ interface BookFormProps {
   book?: Book;
   toggleModal: () => void;
   handleAddBook?: (book: Book) => void;
-  handleEditBook?: (book: Book) => void;
+  handleEditBook?: (book: Book, oldIsbn: string) => void;
 }
 
 export const BookForm = ({ book, toggleModal, handleAddBook, handleEditBook }: BookFormProps) => {
@@ -32,7 +32,7 @@ export const BookForm = ({ book, toggleModal, handleAddBook, handleEditBook }: B
     try {
       if (book) {
         const newBook = await updateBook(book.isbn, bookData);
-        if (handleEditBook) handleEditBook(newBook);
+        if (handleEditBook) handleEditBook(newBook, book.isbn);
         toast.success("Book edited successfully");
       } else {
         const newBook = await addBook(bookData);

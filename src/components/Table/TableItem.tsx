@@ -13,7 +13,7 @@ interface TableItemProps {
   book: Book;
   number: number;
   handleDeleteBook: (isbn: string) => void;
-  handleEditBook: (book: Book) => void;
+  handleEditBook: (book: Book, oldIsbn: string) => void;
 }
 export const TableItem = ({ book, number, handleDeleteBook, handleEditBook }: TableItemProps) => {
   const [isOpenModal, toggleModal] = useModal();
@@ -31,7 +31,7 @@ export const TableItem = ({ book, number, handleDeleteBook, handleEditBook }: Ta
   const handleChangeStatus = async (isbn: string) => {
     try {
       await markAsBorrowed(isbn, !book.isBorrowed);
-      handleEditBook({ ...book, isBorrowed: !book.isBorrowed });
+      handleEditBook({ ...book, isBorrowed: !book.isBorrowed }, isbn);
       toast.success("Book status changed successfully");
     } catch (error) {
       toast.error("Something went wrong. Reload page or try again later!");

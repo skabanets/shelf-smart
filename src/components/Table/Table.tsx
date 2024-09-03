@@ -6,7 +6,7 @@ import type { Book } from "../../types/book";
 interface TableItemProps {
   books: Book[];
   handleDeleteBook: (isbn: string) => void;
-  handleEditBook: (book: Book) => void;
+  handleEditBook: (book: Book, oldIsbn: string) => void;
 }
 
 export const Table = ({ books, handleDeleteBook, handleEditBook }: TableItemProps) => {

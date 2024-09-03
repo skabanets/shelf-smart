@@ -1,4 +1,4 @@
-import { Button } from "../../components";
+import { Button } from "../Button/Button";
 
 import { deleteBookByIsbn } from "../../services/api";
 import type { Book } from "../../types/book";

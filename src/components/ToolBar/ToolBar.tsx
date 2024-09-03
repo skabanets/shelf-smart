@@ -1,7 +1,9 @@
-import { useModal } from "../../hooks";
-import { Button, SearchBar } from "../../components";
-import { Modal } from "../Modal/Modal";
 import { BookForm } from "../BookForm/BookForm";
+import { Button } from "../Button/Button";
+import { Modal } from "../Modal/Modal";
+import { SearchBar } from "../SearchBar/SearchBar";
+
+import { useModal } from "../../hooks";
 
 interface ToolBarProps {
   search: string;

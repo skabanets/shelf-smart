@@ -1,7 +1,7 @@
 import { TableHeader } from "./TableHeader";
+import { TableItem } from "./TableItem";
 
 import type { Book } from "../../types/book";
-import { TableItem } from "./TableItem";
 
 interface TableItemProps {
   books: Book[];

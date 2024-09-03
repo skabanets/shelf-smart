@@ -1,6 +1,7 @@
 import { IoSearchSharp } from "react-icons/io5";
-import { Button } from "..";
 import { GrPowerReset } from "react-icons/gr";
+
+import { Button } from "../Button/Button";
 
 interface SearchBarProps {
   search: string;

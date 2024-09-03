@@ -1,5 +1,6 @@
-import { Book } from "@/types";
 import axios from "axios";
+
+import type { Book } from "../types/book";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 

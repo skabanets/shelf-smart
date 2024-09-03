@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Button, Input } from "../../components";
+
+import { Input } from "../Input/Input";
+import { Button } from "../Button/Button";
 
 export const BookForm = () => {
   const [isbn, setIsbn] = useState("");
@@ -20,7 +22,7 @@ export const BookForm = () => {
 
   return (
     <form onSubmit={handelSubmitForm} className="flex flex-col gap-7">
-      <h1 className="font-montserrat-semibold text-greyColor flex justify-center text-2xl">
+      <h1 className="flex justify-center font-montserrat-semibold text-2xl text-greyColor">
         Add Book
       </h1>
       <div className="flex flex-col gap-2.5">

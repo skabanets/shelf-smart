@@ -4,7 +4,7 @@ import { Table } from "./Table/Table";
 import { ToolBar } from "./ToolBar/ToolBar";
 
 import { getAllBooks } from "../services/api";
-import type { Book } from "../types";
+import type { Book } from "../types/book";
 
 export const App = () => {
   const [fetching, setFetching] = useState(false);
@@ -27,7 +27,6 @@ export const App = () => {
 
   return (
     <>
-      {fetching && <div>Loader...</div>}
       <main>
         <section className="container flex flex-col gap-12 py-[60px]">
           <ToolBar search={search} setSearch={setSearch} />

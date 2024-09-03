@@ -1,12 +1,13 @@
 import { toast } from "react-toastify";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 import { Button } from "../Button/Button";
+import { BookForm } from "../BookForm/BookForm";
 
 import { deleteBookByIsbn, markAsBorrowed } from "../../services/api";
-import type { Book } from "../../types/book";
-import { useModal } from "../../hooks";
-import { BookForm } from "../BookForm/BookForm";
 import { Modal } from "../Modal/Modal";
+import { useModal } from "../../hooks";
+import type { Book } from "../../types/book";
 
 interface TableItemProps {
   book: Book;
@@ -48,13 +49,20 @@ export const TableItem = ({ book, number, handleDeleteBook, handleEditBook }: Ta
           <Button
             onClick={() => handleChangeStatus(book.isbn)}
             className={`w-2/3 rounded p-2 ${book.isBorrowed ? "bg-statusBorrowedColor" : "bg-statusAvailableColor"}`}
+            type="button"
           >
             {book.isBorrowed ? "Borrowed" : "Available"}
           </Button>
         </td>
-        <td className="space-x-4">
-          <Button onClick={() => handleDeleteBookByIsbn(book.isbn)}>Delete</Button>
-          <Button onClick={toggleModal}>Edit</Button>
+        <td>
+          <div className="flex w-full items-center justify-center gap-5">
+            <Button onClick={toggleModal} type="button">
+              <FaEdit className="size-6 fill-gray-800" />
+            </Button>
+            <Button onClick={() => handleDeleteBookByIsbn(book.isbn)} type="button">
+              <FaTrashAlt className="size-6 fill-red-500 hover:fill-red-600" />
+            </Button>
+          </div>
         </td>
       </tr>
       {isOpenModal && (

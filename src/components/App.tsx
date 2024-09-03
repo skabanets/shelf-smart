@@ -6,6 +6,7 @@ import { Loader } from "./Loader/Loader";
 
 import { getAllBooks } from "../services/api";
 import type { Book } from "../types/book";
+import { Message } from "./Message/Message";
 
 export const App = () => {
   const [fetching, setFetching] = useState(false);
@@ -36,7 +37,6 @@ export const App = () => {
     setBooks([...books, book]);
   };
   const handleEditBook = (book: Book) => {
-    console.log(book);
     setBooks(books.map(b => (b.isbn === book.isbn ? book : b)));
   };
 
@@ -50,12 +50,21 @@ export const App = () => {
     <>
       <main>
         <section className="container flex flex-col gap-12 py-[60px]">
-          <ToolBar search={search} setSearch={setSearch} handleAddBook={handleAddBook} />
-          <Table
-            books={books}
-            handleDeleteBook={handleDeleteBook}
-            handleEditBook={handleEditBook}
+          <ToolBar
+            hideSearch={books.length === 0 && !search ? true : false}
+            search={search}
+            setSearch={setSearch}
+            handleAddBook={handleAddBook}
           />
+          {books.length === 0 && search && <Message text={"Nothing found"} />}
+          {books.length === 0 && !search && <Message text={"No books in library. Add new Book."} />}
+          {books.length > 0 && (
+            <Table
+              books={books}
+              handleDeleteBook={handleDeleteBook}
+              handleEditBook={handleEditBook}
+            />
+          )}
         </section>
       </main>
     </>

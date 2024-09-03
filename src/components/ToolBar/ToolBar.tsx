@@ -10,14 +10,15 @@ interface ToolBarProps {
   search: string;
   setSearch: (search: string) => void;
   handleAddBook: (book: Book) => void;
+  hideSearch: boolean;
 }
-export const ToolBar = ({ search, setSearch, handleAddBook }: ToolBarProps & {}) => {
+export const ToolBar = ({ search, setSearch, handleAddBook, hideSearch }: ToolBarProps & {}) => {
   const [isOpenModal, toggleModal] = useModal();
 
   return (
     <div className="flex w-full items-center justify-between">
-      <SearchBar search={search} setSearch={setSearch} />
-      <Button onClick={toggleModal} className="primary-btn w-[200px]">
+      {!hideSearch && <SearchBar search={search} setSearch={setSearch} />}
+      <Button onClick={toggleModal} className="primary-btn ml-auto w-[200px]">
         Add Book
       </Button>
       {isOpenModal && (

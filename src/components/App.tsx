@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { Table } from "./Table/Table";
 import { ToolBar } from "./ToolBar/ToolBar";
 import { Loader } from "./Loader/Loader";
+import { Message } from "./Message/Message";
 
 import { getAllBooks } from "../services/api";
 import type { Book } from "../types/book";
-import { Message } from "./Message/Message";
 
 export const App = () => {
   const [fetching, setFetching] = useState(false);

@@ -12,22 +12,6 @@ export const App = () => {
   const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
-    const handlePopState = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const searchQuery = searchParams.get("query") || "";
-      setSearch(searchQuery);
-    };
-
-    handlePopState();
-
-    window.addEventListener("popstate", handlePopState);
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
-
-  useEffect(() => {
     setFetching(true);
     getAllBooks(search ? search : "")
       .then(setBooks)
@@ -37,13 +21,17 @@ export const App = () => {
       .finally(() => setFetching(false));
   }, [search]);
 
+  const handleDeleteBook = (isbn: string) => {
+    setBooks(books.filter(book => book.isbn !== isbn));
+  };
+
   return (
     <>
       {fetching && <div>Loader...</div>}
       <main>
         <section className="container flex flex-col gap-12 py-[60px]">
-          <ToolBar />
-          <Table books={books} />
+          <ToolBar search={search} setSearch={setSearch} />
+          <Table books={books} handleDeleteBook={handleDeleteBook} />
         </section>
       </main>
     </>

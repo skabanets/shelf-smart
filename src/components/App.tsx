@@ -13,13 +13,23 @@ export const App = () => {
   const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
-    setFetching(true);
-    getAllBooks(search ? search : "")
-      .then(setBooks)
-      .catch(() => {
-        console.error("Something went wrong. Reload page or try again later!");
-      })
-      .finally(() => setFetching(false));
+    let timeoutId: number;
+
+    if (search) {
+      timeoutId = setTimeout(() => {
+        getAllBooks(search)
+          .then(setBooks)
+          .catch(() => console.error("Something went wrong. Reload page or try again later!"));
+      }, 500);
+    } else {
+      setFetching(true);
+      getAllBooks("")
+        .then(setBooks)
+        .catch(() => console.error("Something went wrong. Reload page or try again later!"))
+        .finally(() => setFetching(false));
+    }
+
+    return () => clearTimeout(timeoutId);
   }, [search]);
 
   const handleDeleteBook = (isbn: string) => {

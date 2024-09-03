@@ -54,3 +54,14 @@ export const deleteBookByIsbn = async (isbn: string): Promise<void> => {
     throw new Error("An unknown error occurred");
   }
 };
+
+export const markAsBorrowed = async (isbn: string, isBorrowed: boolean): Promise<void> => {
+  try {
+    await api.patch(`/books/${isbn}/borrow`, { isBorrowed });
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data.message || "An error occurred");
+    }
+    throw new Error("An unknown error occurred");
+  }
+};

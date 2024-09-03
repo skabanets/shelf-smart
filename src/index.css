@@ -27,21 +27,21 @@
   --table-header-color: #52595f;
   --table-row-odd-color: #8cd3f7;
   --table-row--even-color: #66c8f9;
-  --status-borrowed-color: #dc3545;
-  --status-available-color: #28a745;
+  --status-borrowed-color: #db5b68;
+  --status-available-color: #5aaf6e;
   --grey-color: #6c757d;
 }
 
 body {
-  @apply font-montserrat-regular bg-primaryBgColor text-primaryTextColor min-h-screen text-lg;
+  @apply min-h-screen bg-primaryBgColor font-montserrat-regular text-lg text-primaryTextColor;
 }
 
 .primary-btn {
-  @apply bg-buttonColor text-secondaryTextColor hover:bg-buttonHoverColor font-montserrat-semibold rounded-md px-4 py-2;
+  @apply rounded-md bg-buttonColor px-4 py-2 font-montserrat-semibold text-secondaryTextColor hover:bg-buttonHoverColor;
 }
 
 .input-field {
-  @apply focus:border-buttonColor h-11 rounded-md border border-solid border-slate-400 px-3 py-1.5 focus:outline-none;
+  @apply h-11 rounded-md border border-solid border-slate-400 px-3 py-1.5 focus:border-buttonColor focus:outline-none;
 }
 
 .label {

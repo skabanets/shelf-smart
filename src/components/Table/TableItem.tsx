@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 import { Button } from "../Button/Button";
 
-import { deleteBookByIsbn } from "../../services/api";
+import { deleteBookByIsbn, markAsBorrowed } from "../../services/api";
 import type { Book } from "../../types/book";
 import { useModal } from "../../hooks";
 import { BookForm } from "../BookForm/BookForm";
@@ -27,6 +27,16 @@ export const TableItem = ({ book, number, handleDeleteBook, handleEditBook }: Ta
     }
   };
 
+  const handleChangeStatus = async (isbn: string) => {
+    try {
+      await markAsBorrowed(isbn, !book.isBorrowed);
+      handleEditBook({ ...book, isBorrowed: !book.isBorrowed });
+      toast.success("Book status changed successfully");
+    } catch (error) {
+      toast.error("Something went wrong. Reload page or try again later!");
+    }
+  };
+
   return (
     <>
       <tr className="tr-style odd:bg-secondaryBgColor h-[64px] font-medium">
@@ -34,7 +44,14 @@ export const TableItem = ({ book, number, handleDeleteBook, handleEditBook }: Ta
         <td>{book.title}</td>
         <td>{book.author}</td>
         <td>{book.isbn}</td>
-        <td>{book.isBorrowed ? "Borrowed" : "Available"}</td>
+        <td>
+          <Button
+            onClick={() => handleChangeStatus(book.isbn)}
+            className={`w-2/3 rounded p-2 ${book.isBorrowed ? "bg-statusBorrowedColor" : "bg-statusAvailableColor"}`}
+          >
+            {book.isBorrowed ? "Borrowed" : "Available"}
+          </Button>
+        </td>
         <td className="space-x-4">
           <Button onClick={() => handleDeleteBookByIsbn(book.isbn)}>Delete</Button>
           <Button onClick={toggleModal}>Edit</Button>

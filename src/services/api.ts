@@ -9,6 +9,9 @@ export const api = axios.create({
 
 export const getAllBooks = async (query: string = ""): Promise<Book[]> => {
   const { data } = await api.get(`/books?query=${query}`);
-
   return data;
+};
+
+export const deleteBookByIsbn = async (isbn: string): Promise<void> => {
+  await api.delete(`/books/${isbn}`);
 };

@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: "Montserrat-SemiBold";
-  src: url("./assets/fonts/Montserrat-SemiBold.ttf") format("woff");
+  src: url("./assets/fonts/Montserrat-SemiBold.ttf") format("ttf");
   font-weight: 600;
   font-stretch: normal;
   font-display: swap;

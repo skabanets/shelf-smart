@@ -3,7 +3,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      "montserrat-regular": ["Montserrat-Regular.", "sans-serif"],
+      "montserrat-regular": ["Montserrat-Regular", "sans-serif"],
       "montserrat-semibold": ["Montserrat-SemiBold", "sans-serif"],
     },
     screens: {
